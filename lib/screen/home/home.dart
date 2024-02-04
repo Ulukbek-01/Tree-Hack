@@ -1,40 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:plants_app/data/user_data.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
-  Future scanBarcode() async {
-    // var status = await Permission.camera.status;
-    // status = await Permission.camera.request();
-    // if (status.isPermanentlyDenied) {
-    //   print('isPer');
-    // } else if (status.isDenied) {
+  @override
+  State<Home> createState() => _HomeState();
+}
 
-    //   print(status.isDenied);
-    // } else if (status.isGranted) {
-    //   String scannerResult;
-    //   try {
+class _HomeState extends State<Home> {
+  Future scanBarcode() async {
     String scannerResult = await FlutterBarcodeScanner.scanBarcode(
       '#ff6666',
       'Cancel',
       true,
       ScanMode.BARCODE,
     );
-    print(scannerResult);
-    // } on PlatformException {
-    //   scannerResult = 'Failed to get paltform version.';
-    // }
-    // if (!mounted) return;
-    // Provider.of<BarcodeData>(context, listen: false).fetchItems(
-    //     Provider.of<IsOptovik>(context, listen: false).isOptovik,
-    //     scannerResult);
-    // }
+    if (!mounted) return;
+    if (scannerResult == '5') {
+      Provider.of<UserData>(context, listen: false).increasePoints(5);
+    } else if (scannerResult == '10') {
+      Provider.of<UserData>(context, listen: false).increasePoints(10);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    int level = Provider.of<UserData>(context).level;
+    int points = Provider.of<UserData>(context).points;
+    String imageString = Provider.of<UserData>(context).plantImage;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
@@ -73,16 +70,16 @@ class Home extends StatelessWidget {
                           width: 50,
                         ),
                       ),
-                      const Text(
-                        'Lv.3',
-                        style: TextStyle(
+                      Text(
+                        'Lv.$level',
+                        style: const TextStyle(
                           fontSize: 24,
                           color: Colors.grey,
                         ),
                       ),
-                      const Text(
-                        '26💧',
-                        style: TextStyle(
+                      Text(
+                        '$points💧',
+                        style: const TextStyle(
                           fontSize: 24,
                           color: Colors.grey,
                         ),
@@ -98,7 +95,7 @@ class Home extends StatelessWidget {
                   child: Opacity(
                     opacity: 0.90,
                     child: Image.asset(
-                      'assets/images/rep_5.jpg',
+                      imageString,
                     ),
                   ),
                 ),

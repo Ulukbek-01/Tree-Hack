@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:plants_app/data/user_data.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'local_widgets/product_attributes.dart';
@@ -32,7 +34,7 @@ class _ProductPageState extends State<ProductPage> {
               width: double.infinity,
               height: 380,
               color: const Color(0xffF5F5F5),
-              child: Image.asset('assets/images/hair_dryer.jpg'),
+              child: Image.asset('assets/images/new_dryer.jpg'),
             ),
             ConstrainedBox(
               constraints: BoxConstraints(minHeight: 100.h - topPadding),
@@ -161,7 +163,13 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                             const SizedBox(width: 36),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Provider.of<UserData>(context, listen: false)
+                                    .decreasePoints(20);
+                                Provider.of<UserData>(context, listen: false)
+                                    .decreaseStore();
+                                Navigator.of(context).pop();
+                              },
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: const Color(0xffffffff),
                                 backgroundColor: const Color(0xff3B7254),

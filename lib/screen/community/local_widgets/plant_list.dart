@@ -11,7 +11,7 @@ class PlantCategoryList extends StatefulWidget {
 
 class _PlantCategoryListState extends State<PlantCategoryList> {
   var _selectedInd = 0;
-  List<String> plantTypes = ['Recommend', 'Indoor', 'Outdoor', 'Top', 'New'];
+  List<String> plantTypes = ['Recommend', 'Top', 'New', 'Explore', 'Interesting'];
 
   void updateState(int index) {
     setState(() {

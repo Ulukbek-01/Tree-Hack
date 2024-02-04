@@ -86,8 +86,9 @@ class _AccountState extends State<Account> {
               const SizedBox(height: 8),
               SizedBox(
                 width: 90.w,
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextFormField(
+                  initialValue: 'Ulukbek Aitmatov',
+                  decoration: const InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                     fillColor: Color(0xfff0f0f0),
@@ -122,8 +123,9 @@ class _AccountState extends State<Account> {
               const SizedBox(height: 8),
               SizedBox(
                 width: 90.w,
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextFormField(
+                  initialValue: 'ulukbekaitmatov79@gmail.com',
+                  decoration: const InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                     fillColor: Color(0xfff0f0f0),
@@ -158,8 +160,9 @@ class _AccountState extends State<Account> {
               const SizedBox(height: 8),
               SizedBox(
                 width: 90.w,
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextFormField(
+                  initialValue: 'Melville library',
+                  decoration: const InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                     fillColor: Color(0xfff0f0f0),

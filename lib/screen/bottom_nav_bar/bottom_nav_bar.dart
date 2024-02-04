@@ -6,6 +6,7 @@ import '../profile/profile.dart';
 import '../stores/store.dart';
 
 class BottomNavBar extends StatefulWidget {
+  static const String route = 'Bottom-Nav-Bar';
   const BottomNavBar({super.key});
 
   @override

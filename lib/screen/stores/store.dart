@@ -14,23 +14,15 @@ class Store extends StatelessWidget {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        // automaticallyImplyLeading: false,
-        // leading: IconButton(
-        //   onPressed: () {},
-        //   icon: Image.asset(
-        //     'assets/images/align-justify.png',
-        //     width: 26,
-        //   ),
-        // ),
-        actions: [
-          const CircleAvatar(
+        actions: const [
+          CircleAvatar(
             radius: 13,
             child: Icon(
               Icons.person,
               color: Colors.green,
             ),
           ),
-          const SizedBox(width: 24),
+          SizedBox(width: 24),
         ],
       ),
       body: Column(
@@ -56,7 +48,7 @@ class Store extends StatelessWidget {
                   ),
                   filled: true,
                   prefixIcon: Icon(Icons.search),
-                  hintText: 'Search Plants',
+                  hintText: 'Search Product',
                   isDense: true,
                   suffixIcon: Icon(Icons.keyboard_voice_outlined)),
             ),

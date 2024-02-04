@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:plants_app/data/user_data.dart';
 import 'package:plants_app/screen/stores/product_page/product_page.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ItemList extends StatelessWidget {
@@ -7,8 +9,9 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int storeCount = Provider.of<UserData>(context).storeCount;
     return ListView.builder(
-      itemCount: 3,
+      itemCount: storeCount,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () => Navigator.of(context).pushNamed(ProductPage.route),
@@ -35,7 +38,11 @@ class ItemList extends StatelessWidget {
                   elevation: 5,
                   borderRadius: BorderRadius.circular(5),
                   child: Image.asset(
-                    'assets/images/hair_dryer.jpg',
+                    index == 0
+                        ? 'assets/images/hair_dryer.jpg'
+                        : index == 1
+                            ? 'assets/images/botle.jpg'
+                            : 'assets/images/new_dryer.jpg',
                     height: 66,
                     width: 66,
                   ),

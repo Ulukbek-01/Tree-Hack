@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
             Store.route: (_) => const Store(),
             UploadProduct.route: (_) => const UploadProduct(),
             Account.route: (_) => const Account(),
+            BottomNavBar.route: (_) => const BottomNavBar(),
           },
         ),
       );

@@ -1,31 +1,59 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
-import '../model/model_user.dart';
-import 'main_data.dart';
 
 class UserData with ChangeNotifier {
-  ModelUser? user;
-  bool isLoading = true;
-  static Uri urlOrder = Uri.parse('');
+  String name = 'Biniam';
+  String email = 'Biniam2345@gmail.com';
+  int points = 25;
+  int level = 3;
+  String plantImage = 'assets/images/rep_4.jpg';
 
-  Future login(String email, String password) async {
-    urlOrder = Uri.parse('${MainData.baseUrl}login');
-    var response = await http.post(
-      urlOrder,
-      headers: {"Content-Type": "application/json"},
-      body: json.encode({'email': email, 'password': password}),
-    );
+  int storeCount = 3;
 
-    if (response.statusCode != 200) {
-      print('error 200');
-    } else {
-      String source = const Utf8Decoder().convert(response.bodyBytes);
-      var body = json.decode(source) as Map<String, dynamic>;
-
-      print(body);
+  void increasePoints(int amount) {
+    points += amount;
+    if (points > 0 && points < 10) {
+      level = 1;
+      plantImage = 'assets/images/rep_2.jpg';
+    } else if (points >= 10 && points < 20) {
+      level = 2;
+      plantImage = 'assets/images/rep_3.jpg';
+    } else if (points >= 20 && points < 30) {
+      level = 3;
+      plantImage = 'assets/images/rep_4.jpg';
+    } else if (points >= 30) {
+      level = 4;
+      plantImage = 'assets/images/rep_5.jpg';
     }
+
+    notifyListeners();
+  }
+
+  void decreasePoints(int amount) {
+    points -= amount;
+    if (points < 0) {
+      points = 0;
+    }
+
+    if (points > 0 && points < 10) {
+      level = 1;
+      plantImage = 'assets/images/rep_2.jpg';
+    } else if (points >= 10 && points < 20) {
+      level = 2;
+      plantImage = 'assets/images/rep_3.jpg';
+    } else if (points >= 20 && points < 30) {
+      level = 3;
+      plantImage = 'assets/images/rep_4.jpg';
+    } else if (points >= 30) {
+      level = 4;
+      plantImage = 'assets/images/rep_5.jpg';
+    }
+    notifyListeners();
+  }
+
+  void decreaseStore() {
+    storeCount--;
+    notifyListeners();
   }
 }
